@@ -28,4 +28,5 @@ class GroupsController extends AppController {
          $this->set('group', $group);
          $this->set('_serialize', 'group');
     }
+
 }
