@@ -1,0 +1,41 @@
+{
+  "name": "Get_Together",
+  "version": "1.0.0",
+  "description": "A application plugin for Joomla to schedule small study groups within your church",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "groups",
+    "study",
+    "search",
+    "church"
+  ],
+  "author": "Kyle Proctor",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^3.3.1",
+    "flux": "^2.0.1",
+    "jquery": "^2.1.1",
+    "react": "0.12.x",
+    "react-bootstrap": "^0.12.0",
+    "react-router": "^0.11.6",
+    "react-tools": "^0.12.x",
+    "underscore": "^1.7.0"
+  },
+  "devDependencies": {
+    "react": "0.12.x",
+    "browserify": "^6.3.2",
+    "gulp": "^3.8.10",
+    "gulp-browserify": "^0.5.1",
+    "gulp-clean": "^0.3.1",
+    "gulp-connect": "^2.2.0",
+    "gulp-minify-css": "^0.3.12",
+    "gulp-plumber": "^0.6.6",
+    "gulp-rename": "^1.2.0",
+    "reactify": "^0.17.1",
+    "underscore": "^1.7.0",
+    "vinyl-source-stream": "^1.0.0"
+  }
+}
