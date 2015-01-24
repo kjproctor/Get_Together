@@ -4,29 +4,26 @@ App::uses('AppController', 'Controller');
 
 class GroupsController extends AppController {
 
-    public function findAll() {
+    public function findAll()
+    {
       /*print_r($this->request->query);*/
-        $start = $this->request->query['start'];
-        if($start != null)
-        {
+/*        $groups = $this->Group->find('all', array(
+                'conditions' => array('Group.status' => 'pending'),
+                'limit' => n, //int
+                'offset' => n, //int
 
-        }
-
-        $groups = $this->Group->find('all');
+            ));*/
+        $groups = $this->Group->find('all', $this->getArg());
         $totalCount = $this->Group->find('count');
-        $results = $this->createResultSet("Group", $groups, $totalCount, 0, 100);
+        $results = $this->createResultSet("Group", $groups, $totalCount);
         $this->sendResponse($results);
     }
 
-    public function find($id = null) {
-         if (!$id) {
-             throw new NotFoundException(__('A group id must be provided'));
-         }
-
-         $group = $this->Group->findById($id);
-
-         $this->set('group', $group);
-         $this->set('_serialize', 'group');
+    public function getArg()
+    {
+        $arg = parent::getArg();
+        return $arg;
     }
     
 }
+

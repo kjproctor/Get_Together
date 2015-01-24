@@ -44,8 +44,10 @@ class AppController extends Controller {
      $this->response->body($json);
   }
 
-  public function createResultSet($objectName, $data, $totalCount, $start, $limit)
+  public function createResultSet($objectName, $data, $totalCount)
   {
+    $start = $this->request->query['start'] != null ? $this->request->query['start'] : 0;
+    $limit = $this->request->query['limit'] != null ? $this->request->query['limit'] : 20;
     $items = array();
     foreach ($data as $key => $value)
     {
@@ -54,5 +56,15 @@ class AppController extends Controller {
     }
     $results = (object) array('items' => $items, 'totalCount' => $totalCount, 'start' => $start, 'limit' => $limit);
     return $results;
+  }
+
+  public function getArg()
+  {
+    $arg = array();
+    $start = $this->request->query['start'];
+    $limit = $this->request->query['limit'];
+    $arg['offset'] = $start != null ? $start : 0;
+    $arg['limit'] = $limit != null ? $limit : 20;
+    return $arg;
   }
 }
