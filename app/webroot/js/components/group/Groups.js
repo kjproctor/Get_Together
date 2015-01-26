@@ -40,17 +40,12 @@ var Groups = React.createClass({
     {
         var body;
         var groups = this.state.groups;
-        console.debug("groups", groups);
-        if(groups.length > 0)
-        {
-            console.debug("group:", groups[0].id);
-        }
         return (
                 <div className="Groups">
                     <h1>Groups</h1>
 
                     <Grid  key="GroupsGrid"
-                        columnModel={{"title": "Group", "day_of_week": "Day", "start_time": "Time", "location": "Location"}}
+                        columnModel={{"title": "Group", "day_of_week": "Day", "start_time": "Time", "location.description": "Location"}}
                         results={groups}
                         loading={this.state.loading}
                         totalCount={this.state.totalCount}

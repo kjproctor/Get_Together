@@ -1,7 +1,7 @@
 <?php
 
-App::uses('AppModel', 'Model');
+ App::uses('AppModel', 'Model');
 
-class Group extends AppModel {
-
-}
+ class Group extends AppModel {
+     public $belongsTo = 'Location';
+ }

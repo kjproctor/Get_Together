@@ -31,6 +31,11 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+  /*Group Status*/
+  const OPEN = "Open";
+  const CLOSED = "Closed";
+  const FULL = "Full";
+  /**/
   public $components = array('DebugKit.Toolbar', 'RequestHandler');
   public $viewClass = 'Json';
 
@@ -44,17 +49,11 @@ class AppController extends Controller {
      $this->response->body($json);
   }
 
-  public function createResultSet($objectName, $data, $totalCount)
+  public function createResultSet($data, $totalCount)
   {
     $start = $this->request->query['start'] != null ? $this->request->query['start'] : 0;
     $limit = $this->request->query['limit'] != null ? $this->request->query['limit'] : 20;
-    $items = array();
-    foreach ($data as $key => $value)
-    {
-        //print_r(array_values($value[$objectName]));
-        array_push($items, $value[$objectName]);
-    }
-    $results = (object) array('items' => $items, 'totalCount' => $totalCount, 'start' => $start, 'limit' => $limit);
+    $results = (object) array('items' => $this->processResults($data), 'totalCount' => $totalCount, 'start' => $start, 'limit' => $limit);
     return $results;
   }
 
@@ -66,5 +65,19 @@ class AppController extends Controller {
     $arg['offset'] = $start != null ? $start : 0;
     $arg['limit'] = $limit != null ? $limit : 20;
     return $arg;
+  }
+
+  public function processResults($results)
+  {
+    $items = array();
+    if(count($results) > 0)
+    {
+        foreach ($data as $key => $value)
+        {
+            //print_r(array_values($value[$objectName]));
+            array_push($items, $value[$objectName]);
+        }
+    }
+    return $items;
   }
 }
