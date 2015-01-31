@@ -7,18 +7,20 @@ class GroupsController extends AppController {
 
     public function findAll()
     {
-      /*print_r($this->request->query);*/
-/*        $groups = $this->Group->find('all', array(
-                'conditions' => array('Group.status' => 'pending'),
-                'limit' => n, //int
-                'offset' => n, //int
-
-            ));*/
         $results = $this->Group->find('all', $this->getArg());
         /*print_r($results);*/
         $totalCount = $this->Group->find('count');
         $results = $this->createResultSet($results, $totalCount);
         $this->sendResponse($results);
+    }
+
+    public function find()
+    {
+        $results = $this->Group->findById($this->request->query['id']);
+        /*print_r($results);*/
+        $totalCount = $this->Group->find('count');
+        $group = $this->processResult($results);
+        $this->sendResponse($group);
     }
 
     public function processResults($results)
@@ -28,15 +30,21 @@ class GroupsController extends AppController {
         {
             for($i=0; $i<count($results); $i++)
             {
-                $group = $results[$i]['Group'];
-                $location = $results[$i]['Location'];
-                $group['location'] = $location;
-                $topic = $results[$i]['Topic'];
-                $group['topic'] = $topic;
+                $group = $this->processResult($results[$i]);
                 array_push($groups, $group);
             }
         }
         return $groups;
+    }
+
+    public function processResult($result)
+    {
+        $group = $result['Group'];
+        $location = $result['Location'];
+        $group['location'] = $location;
+        $topic = $result['Topic'];
+        $group['topic'] = $topic;
+        return $group;
     }
 
     public function getArg()

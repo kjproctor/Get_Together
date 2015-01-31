@@ -95,13 +95,7 @@ var Groups = React.createClass({
     onChangeSort: function(fieldName)
     {
         GroupActions.changeSort(fieldName);
-    },
-
-    onRowClick: function(id)
-    {
-        console.debug("onRowClick:", id);
     }
-
 
 });
 module.exports = Groups;

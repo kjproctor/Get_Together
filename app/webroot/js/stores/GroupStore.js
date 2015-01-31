@@ -8,13 +8,13 @@ var GroupStore = function()
     AbstractStore.call(this);
     this._arg = {start: 0, limit: 10};
     this._resource = "/Get_Together/groups/";
-    this._resourceQueryMethod = "findAll";
 
     this.handleAction = function(payload)
     {
         var action = payload.action;
         switch(action.actionType) {
             case GroupActions.REFRESH:
+                this._resourceQueryMethod = "findAll";
                 this.refresh();
                 break;
             case GroupActions.CHANGE_PAGE:
@@ -24,6 +24,11 @@ var GroupStore = function()
                 break;
             case GroupActions.CHANGE_SORT:
                 this.setSort(action.fieldName);
+                this.refresh();
+                break;
+            case GroupActions.GET:
+                this._arg.id = action.id;
+                this._resourceQueryMethod = "find";
                 this.refresh();
                 break;
             default:

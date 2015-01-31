@@ -5,6 +5,7 @@ var REST = require('../utils/REST');
 function AbstractStore() {
 
     this._items = {};
+    this._item = {};
     this._arg = {start: 0, limit: 10};
     this._totalCount = 0;
     this._page = 1;
@@ -30,6 +31,10 @@ function AbstractStore() {
 
     this.getSort = function() {
         return this._arg.sort;
+    };
+
+    this.get = function() {
+        return this._item;
     };
 
     this.getAll =  function() {
@@ -90,7 +95,14 @@ function AbstractStore() {
         this.emitChange();
         REST.get(this._resource+this._resourceQueryMethod, this._arg, function(data) {
             console.debug("data", data);
-            this._items = data.items;
+            if(data.items)
+            {
+                this._items = data.items;
+            }
+            else if(data)
+            {
+                this._item = data;
+            }
             this._totalCount = data.totalCount;
             this._loading = false;
             this.emitChange();
