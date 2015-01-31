@@ -8,8 +8,8 @@ window.$ = $;
 var Navigation = require('./components/common/Navigation');
 var Login = require('./components/common/Login');
 var Groups = require('./components/group/Groups');
+var Group = require('./components/group/Group');
 var Contact = require('./components/common/Contact');
-
 
 var App = React.createClass({
                                 render: function ()
@@ -29,6 +29,7 @@ var routes = (
   <Route handler={App} path="/">
     <Route name="Login" handler={Login} />
     <Route name="Groups" handler={Groups} />
+    <Route name="Group" path="Group/:id" handler={Group}/>
     <Route name="Contact" handler={Contact} />
   </Route>
 );

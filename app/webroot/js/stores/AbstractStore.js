@@ -89,7 +89,7 @@ function AbstractStore() {
         this._loading = true;
         this.emitChange();
         REST.get(this._resource+this._resourceQueryMethod, this._arg, function(data) {
-            console.debug("data", data.items);
+            console.debug("data", data);
             this._items = data.items;
             this._totalCount = data.totalCount;
             this._loading = false;

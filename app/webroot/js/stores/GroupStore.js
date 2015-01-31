@@ -19,7 +19,7 @@ var GroupStore = function()
                 break;
             case GroupActions.CHANGE_PAGE:
                 this._page = action.page;
-                this._arg.start = this._page * this._arg.limit;
+                this._arg.start = this._page * this._arg.limit - 2;
                 this.refresh();
                 break;
             case GroupActions.CHANGE_SORT:

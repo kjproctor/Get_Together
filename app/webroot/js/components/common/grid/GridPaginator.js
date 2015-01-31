@@ -1,12 +1,5 @@
 /** @jsx React.DOM */
 
-/*
- * results
- *   List of data results to display. For example a list of devices.  Use the columnModel to pick what data on the device to display
- * columnModel
- *   maps grid column names and object fields to use from the results
- *   {"id":"Device ID", "hostName":"DeviceName"}
- * */
 var React = require('react');
 var _ = require('underscore');
 
@@ -31,9 +24,8 @@ var GridPaginator = React.createClass({
          }
          else
          {
-             numPages= Math.floor(this.props.totalCount/this.props.resultsPerPage);
+             numPages = Math.ceil(this.props.totalCount/this.props.resultsPerPage);
          }
-
          var paginatorBody;
          if(numPages > 0)
          {
@@ -77,6 +69,7 @@ var GridPaginator = React.createClass({
 
       changePage: function(event, pageModifier){
           var page = !_.isUndefined(pageModifier) ? (this.props.page + pageModifier) : parseInt(event.target.value);
+          console.debug("page: ", page);
           if (!_.isNull(this.props.onChangePage)) {
               this.props.onChangePage(page);
           }

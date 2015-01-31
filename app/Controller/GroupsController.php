@@ -3,7 +3,7 @@
 App::uses('AppController', 'Controller');
 
 class GroupsController extends AppController {
-    public $uses = array('Group', 'Location');
+    public $uses = array('Group', 'Location', 'Topic');
 
     public function findAll()
     {
@@ -15,6 +15,7 @@ class GroupsController extends AppController {
 
             ));*/
         $results = $this->Group->find('all', $this->getArg());
+        /*print_r($results);*/
         $totalCount = $this->Group->find('count');
         $results = $this->createResultSet($results, $totalCount);
         $this->sendResponse($results);
@@ -30,6 +31,8 @@ class GroupsController extends AppController {
                 $group = $results[$i]['Group'];
                 $location = $results[$i]['Location'];
                 $group['location'] = $location;
+                $topic = $results[$i]['Topic'];
+                $group['topic'] = $topic;
                 array_push($groups, $group);
             }
         }

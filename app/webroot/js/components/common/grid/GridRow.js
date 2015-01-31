@@ -29,10 +29,29 @@ var GridRow = React.createClass({
             {
                uniqueKey = "null_grid_column"+Math.random()*2+Math.random();
             }
-            gridColumns.push(<td key={uniqueKey}>{row[columns[i]]}</td>);
+            if(columns[i].indexOf(".") > -1)
+            {
+                var subObjectName = this.getSubObjectName(columns[i]);
+                var subObjectValue = this.getSubObjectValue(columns[i]);
+                gridColumns.push(<td key={uniqueKey}>{row[subObjectName][subObjectValue]}</td>);
+            }
+            else
+            {
+                gridColumns.push(<td key={uniqueKey}>{row[columns[i]]}</td>);
+            }
         }
 
         return (<tr className="standard-row" onClick={this.onClick}>{gridColumns}</tr>);
+    },
+
+    getSubObjectName: function(object)
+    {
+        return object.split(".")[0];
+    },
+
+    getSubObjectValue: function(object)
+    {
+        return object.split(".")[1];
     },
 
     onClick: function()
