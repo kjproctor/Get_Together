@@ -2,7 +2,10 @@
 
 var React = require('react');
 var Router = require('react-router');
-var { Route, Redirect, RouteHandler, Link } = Router;
+var Route = Router.Route;
+var Redirect = Router.Redirect;
+var RouteHandler = Router.RouteHandler;
+var Link = Router.Link;
 var $ = require('jquery');
 window.$ = $;
 var Navigation = require('./components/common/Navigation');
@@ -17,7 +20,7 @@ var App = React.createClass({
                                     return (
                                             <div>
 											   <Navigation />
-											   <div className="app-dock">
+											   <div className="container-fluid">
                                                		<RouteHandler/>
                                                </div>
                                             </div>

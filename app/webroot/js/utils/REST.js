@@ -5,8 +5,9 @@
 var $ = require('jquery');
 var _CREDENTIALS = "CREDENTIALS";
 $.ajaxSettings.traditional = true;
-
-var _url = "http://localhost";
+$.support.cors = true;
+//@todo change this for prod server
+var _url = "http://192.168.1.8";
 
 module.exports = {
     get: function(resource, arg, callback) {

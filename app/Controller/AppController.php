@@ -46,6 +46,7 @@ class AppController extends Controller {
      $this->response->type('json');
      $this->layout = 'ajax';
      $json = json_encode($results, JSON_PRETTY_PRINT);
+     $this->response->header('Access-Control-Allow-Origin', '*');
      $this->response->body($json);
   }
 

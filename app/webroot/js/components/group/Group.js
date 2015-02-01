@@ -35,18 +35,39 @@ var Group = React.createClass({
 
   render: function ()
   {
-    var group;
     if(this.state.group)
     {
-        group = this.state.group;
-        var groupDescription = group.description;
-        group = <div>{groupDescription}</div>;
+        var group = this.state.group;
+        var title = group.title;
+        var description = group.description;
+        var location = "Location: "+group.location.name+", "+group.location.description;
+        var status = "Status: "+group.status;
+        var meets = "Meets: "+group.day_of_week_frequency+" "+group.day_of_week+" from "+group.start_time+" to "+group.end_time;
+        var topic = "Topic: "+group.topic[0].name;
+        var ages;
+        if(group.age_range_end == "ANY")
+        {
+            ages = "Ages: "+group.age_range_start+"+";
+        }
+        else
+        {
+            ages = "Ages: "+group.age_range_start+"-"+group.age_range_end;
+        }
     }
     return (
-      <div>
-        <h1>Group</h1>
-            {group}
-      </div>
+            <div className="container-fluid">
+                <h1>{title}</h1>
+                <h3>{description}</h3>
+                <div className="row">
+                    <div className="col-sm-3 col-md-6">{meets}</div>
+                    <div className="col-sm-3 col-md-6">{location}</div>
+                </div>
+                <div className="row">
+                    <div className="col-sm-3 col-md-6">{ages}</div>
+                    <div className="col-sm-3 col-md-6">{topic}</div>
+                    <div className="col-sm-3 col-md-6">{status}</div>
+                </div>
+            </div>
     );
   },
 

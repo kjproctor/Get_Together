@@ -7,12 +7,6 @@
 body {
 }
 
-.app-dock {
-	padding:25px;
-}
-
-/* end of navigation */
-
 .collapse {
 	display: none;
 }
@@ -20,7 +14,6 @@ body {
 .expand {
 	display: block;
 }
-/* end of drop down menu*/
 
 /*Start of Grid*/
 .Grid {

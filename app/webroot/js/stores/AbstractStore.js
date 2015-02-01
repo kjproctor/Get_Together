@@ -5,7 +5,7 @@ var REST = require('../utils/REST');
 function AbstractStore() {
 
     this._items = {};
-    this._item = {};
+    this._item;
     this._arg = {start: 0, limit: 10};
     this._totalCount = 0;
     this._page = 1;
