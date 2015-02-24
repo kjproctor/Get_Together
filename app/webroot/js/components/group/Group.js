@@ -2,9 +2,10 @@
 var React = require('react');
 var Router = require('react-router');
 var Link = Router.Link;
+var _ = require('underscore');
 var GroupStore = require('../../stores/GroupStore');
 var GroupActions = require('../../actions/GroupActions');
-var _ = require('underscore');
+var LocalMap = require('../common/map/LocalMap');
 
 function getStoreState() {
     return {
@@ -35,6 +36,7 @@ var Group = React.createClass({
 
   render: function ()
   {
+    var map;
     if(this.state.group)
     {
         var group = this.state.group;
@@ -53,6 +55,8 @@ var Group = React.createClass({
         {
             ages = "Ages: "+group.age_range_start+"-"+group.age_range_end;
         }
+        var address = group.location.street+", "+group.location.city+", "+group.location.state+" "+group.location.zip
+        map = <LocalMap address={address} />;
     }
     return (
             <div className="container-fluid">
@@ -67,6 +71,7 @@ var Group = React.createClass({
                     <div className="col-sm-3 col-md-6">{topic}</div>
                     <div className="col-sm-3 col-md-6">{status}</div>
                 </div>
+                {map}
             </div>
     );
   },

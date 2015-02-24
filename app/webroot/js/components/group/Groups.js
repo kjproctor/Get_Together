@@ -2,10 +2,10 @@
 var React = require('react');
 var Router = require('react-router');
 var Link = Router.Link;
+var _ = require('underscore');
 var GroupStore = require('../../stores/GroupStore');
 var GroupActions = require('../../actions/GroupActions');
 var Grid = require('../common/grid/Grid');
-var _ = require('underscore');
 
 function getStoreState() {
     return {
