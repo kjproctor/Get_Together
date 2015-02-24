@@ -39,9 +39,17 @@ var LocalMap = React.createClass({
       );
   },
 
+  handleMarkerClick: function(event, pin) {
+    console.debug("handleMarkerClick", event, pin);
+    var infowindow = new GoogleMapsAPI.InfoWindow();
+    infowindow.setContent("test");
+    infowindow.setPosition(pin.position);
+    infowindow.open(pin.map);
+  },
+
   renderMarkers: function(state, i) {
     return (
-      <Marker position={state.position} key={i} />
+      <Marker position={state.position} key={i} onClick={this.handleMarkerClick} />
       );
   },
 
