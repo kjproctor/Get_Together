@@ -9,10 +9,10 @@ var LatLng = GoogleMapsAPI.LatLng;
 var LocalMap = React.createClass({
   getInitialState: function() {
     return {
-      center: new LatLng(-34.397, 150.644),
+      center: new LatLng(-83.488311, 42.533781),
       zoom: 16,
       markers: [
-        {position: new LatLng(-34.397, 150.644)}
+        {position: new LatLng(-83.488311, 42.533781)}
       ]
     };
   },
