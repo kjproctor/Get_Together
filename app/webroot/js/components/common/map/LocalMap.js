@@ -5,7 +5,6 @@ var GoogleMapsAPI = window.google.maps;
 var Map = ReactGoogleMaps.Map;
 var Marker = ReactGoogleMaps.Marker;
 var LatLng = GoogleMapsAPI.LatLng;
-var OverlayView = ReactGoogleMaps.OverlayView;
 
 var LocalMap = React.createClass({
   getInitialState: function() {
@@ -21,7 +20,7 @@ var LocalMap = React.createClass({
   getDefaultProps: function()
   {
     return {
-        address: ''
+        location: {}
     }
   },
 
@@ -40,11 +39,11 @@ var LocalMap = React.createClass({
   },
 
   handleMarkerClick: function(event, pin) {
-    console.debug("handleMarkerClick", event, pin);
-    var infowindow = new GoogleMapsAPI.InfoWindow();
-    infowindow.setContent("test");
-    infowindow.setPosition(pin.position);
-    infowindow.open(pin.map);
+    //console.debug("handleMarkerClick", event, pin);
+    var infoWindow = new GoogleMapsAPI.InfoWindow();
+    infoWindow.setContent(this.getInfoWindowContent());
+    infoWindow.setPosition(pin.position);
+    infoWindow.open(pin.map);
   },
 
   renderMarkers: function(state, i) {
@@ -75,14 +74,13 @@ var LocalMap = React.createClass({
 
   componentDidMount: function()
   {
-    console.debug("props", this.props);
     var geocoder = new GoogleMapsAPI.Geocoder();
-    geocoder.geocode({ 'address': "Orchard Grove Community Church, Walled Lake, MI 48390" }, this.handleGeoCodeResults);
+    geocoder.geocode({ 'address': this.getAddress(this.props.location) }, this.handleGeoCodeResults);
   },
 
-  handleGeoCodeResults(results, status)
+  handleGeoCodeResults: function(results, status)
   {
-    console.debug("google:", results);
+    //console.debug("google:", results);
     if (status == google.maps.GeocoderStatus.OK)
     {
         console.debug("state:", this.state);
@@ -94,8 +92,31 @@ var LocalMap = React.createClass({
                             ]
                   });
     }
-  }
+  },
 
+  getAddress: function(location)
+  {
+    //this is an ugly hack but google geocode puts the church in the pond across the street
+    if(location.name.indexOf("Orchard Grove") > -1)
+    {
+        return location.name+", "+location.city+", "+location.state+" "+location.zip
+    }
+    else
+    {
+        return location.street+", "+location.city+", "+location.state+" "+location.zip
+    }
+  },
+
+  getInfoWindowContent: function()
+  {
+    var location = this.props.location;
+    var content = location.name+"<br />"+
+    location.description+"<br />"+
+    location.street+"<br />"+
+    location.city+", "+location.state+" "+location.zip+"<br />"+
+    "<a href=\"https://www.google.com/maps?q="+this.getAddress(location)+"\" target=_BLANK>Get Directions</a>";
+    return content;
+  }
 });
 
 module.exports = LocalMap;

@@ -55,8 +55,7 @@ var Group = React.createClass({
         {
             ages = "Ages: "+group.age_range_start+"-"+group.age_range_end;
         }
-        var address = group.location.street+", "+group.location.city+", "+group.location.state+" "+group.location.zip
-        map = <LocalMap address={address} />;
+        map = <LocalMap location={group.location} />;
     }
     return (
             <div className="container-fluid">
