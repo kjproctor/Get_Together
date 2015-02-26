@@ -15,14 +15,15 @@ var LocalMap = React.createClass({
       markers: [
         {position: new LatLng(-83.488311, 42.533781)}
       ],
-      windowWidth: window.innerWidth
     };
   },
 
   getDefaultProps: function()
   {
     return {
-        location: {}
+        location: {},
+        height:400,
+        width:400
     }
   },
 
@@ -38,8 +39,8 @@ var LocalMap = React.createClass({
         initialZoom={this.state.zoom}
         center={this.state.center}
         onCenterChange={this.handleCenterChange}
-        width={this.state.windowWidth-50}
-        height={400}
+        width={this.props.width}
+        height={this.props.height}
         onClick={this.handleMapClick}>
         {this.state.markers.map(this.renderMarkers)}
       </Map>
@@ -86,14 +87,8 @@ var LocalMap = React.createClass({
 
   componentDidMount: function()
   {
-    window.addEventListener('resize', this.handleResize);
     var geocoder = new GoogleMapsAPI.Geocoder();
     geocoder.geocode({ 'address': this.getAddress(this.props.location) }, this.handleGeoCodeResults);
-  },
-
-  componentWillUnmount: function()
-  {
-      window.removeEventListener('resize', this.handleResize);
   },
 
   handleGeoCodeResults: function(results, status)
