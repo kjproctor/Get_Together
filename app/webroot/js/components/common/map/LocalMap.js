@@ -7,13 +7,15 @@ var Marker = ReactGoogleMaps.Marker;
 var LatLng = GoogleMapsAPI.LatLng;
 
 var LocalMap = React.createClass({
-  getInitialState: function() {
+  getInitialState: function()
+  {
     return {
       center: new LatLng(-83.488311, 42.533781),
       zoom: 16,
       markers: [
         {position: new LatLng(-83.488311, 42.533781)}
-      ]
+      ],
+      windowWidth: window.innerWidth
     };
   },
 
@@ -24,13 +26,19 @@ var LocalMap = React.createClass({
     }
   },
 
-  render: function() {
+  handleResize: function(e)
+  {
+      this.setState({windowWidth: window.innerWidth});
+  },
+
+  render: function()
+  {
     return (
       <Map
         initialZoom={this.state.zoom}
         center={this.state.center}
         onCenterChange={this.handleCenterChange}
-        width={400}
+        width={this.state.windowWidth-50}
         height={400}
         onClick={this.handleMapClick}>
         {this.state.markers.map(this.renderMarkers)}
@@ -38,7 +46,8 @@ var LocalMap = React.createClass({
       );
   },
 
-  handleMarkerClick: function(event, pin) {
+  handleMarkerClick: function(event, pin)
+  {
     //console.debug("handleMarkerClick", event, pin);
     var infoWindow = new GoogleMapsAPI.InfoWindow();
     infoWindow.setContent(this.getInfoWindowContent());
@@ -46,13 +55,15 @@ var LocalMap = React.createClass({
     infoWindow.open(pin.map);
   },
 
-  renderMarkers: function(state, i) {
+  renderMarkers: function(state, i)
+  {
     return (
       <Marker position={state.position} key={i} onClick={this.handleMarkerClick} />
       );
   },
 
-  handleMapClick: function(mapEvent) {
+  handleMapClick: function(mapEvent)
+  {
     var marker = {
       position: mapEvent.latLng
     };
@@ -66,7 +77,8 @@ var LocalMap = React.createClass({
     });
   },
 
-  handleCenterChange: function(map) {
+  handleCenterChange: function(map)
+  {
     this.setState({
       center: map.getCenter()
     });
@@ -74,8 +86,14 @@ var LocalMap = React.createClass({
 
   componentDidMount: function()
   {
+    window.addEventListener('resize', this.handleResize);
     var geocoder = new GoogleMapsAPI.Geocoder();
     geocoder.geocode({ 'address': this.getAddress(this.props.location) }, this.handleGeoCodeResults);
+  },
+
+  componentWillUnmount: function()
+  {
+      window.removeEventListener('resize', this.handleResize);
   },
 
   handleGeoCodeResults: function(results, status)
