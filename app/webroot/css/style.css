@@ -14,11 +14,16 @@ body {
 .expand {
 	display: block;
 }
+
+.group-heading {
+    padding: 10px;
+}
+
 .group-info {
     background-color: #f1f1f1;
     padding: 10px;
-    /*clear: right;*/
 }
+
 /*Start of Grid*/
 .Grid {
   margin: 20px 20px 20px 0;

@@ -72,8 +72,10 @@ var Group = React.createClass({
     }
     return (
             <div id="group" className="container-fluid">
-               <h1>{title}</h1>
-               <h3>{description}</h3>
+               <div className="group-heading">
+                <h1>{title}</h1>
+                {description}
+               </div>
                 <div className="group-info">
                     <div className="row">
                         <div className="col-sm-3 col-md-6"><b>Meets: </b>{meets}</div>
