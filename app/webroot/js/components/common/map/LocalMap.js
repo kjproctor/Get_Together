@@ -27,11 +27,6 @@ var LocalMap = React.createClass({
     }
   },
 
-  handleResize: function(e)
-  {
-      this.setState({windowWidth: window.innerWidth});
-  },
-
   render: function()
   {
     return (

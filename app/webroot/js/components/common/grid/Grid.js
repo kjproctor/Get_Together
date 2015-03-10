@@ -48,12 +48,10 @@ var Grid = React.createClass({
          var results = this.props.results;
          var columnModel = this.props.columnModel;
          var loading = this.props.loading ? <div className="loading-container"><div className="loading">Loading&#8230;</div></div> : "";
-         console.debug(results);
          return (
-                 <div className="Grid">
-                     <div className="grid-container panel panel-default">
+                 <div className="container-fluid">
                          {loading}
-                         <div className="grid-body">
+                         <div className="grid-body clearfix">
                              <GridPanel data={results}
                              columnModel={columnModel}
                              sort={this.props.sort}
@@ -67,7 +65,6 @@ var Grid = React.createClass({
                                  page={this.props.page} 
                                  onChangePage={this.props.onChangePage}/>
                          </div>
-                     </div>
                  </div>
                  );
      }

@@ -24,65 +24,29 @@ body {
     padding: 10px;
 }
 
-/*Start of Grid*/
-.Grid {
-  margin: 20px 20px 20px 0;
-}
-
-.Grid table {
-  table-layout: fixed;
-  border-spacing: 0;
-  border-collapse: separate;
-}
-
-.Grid .table-header {
-  margin-bottom: 0;
-}
-
-.Grid th {
-  overflow:hidden;
-}
-
-.Grid .loading {
-  padding: 10px 20px;
-  background-color: #EDEDED;
-  color:#777;
-}
-
-.Grid .standard-row td:first-child:before {
-  content: ' ';
-  margin-right:15px;
-}
-
-.Grid .grid-body table {
+.grid-body table {
   margin-bottom:0;
 }
 
-.Grid thead {
-  background-color: #EDEDED;
-}
-
-.Grid .grid-footer {
+.grid-footer {
   padding: 10px 20px;
-  background-color: #EDEDED;
-  border-top:1px solid #ddd;
   color:#777;
 }
 
-.Grid .grid-footer .glyphicon {
+.grid-footer .glyphicon {
   font-size: 12px;
   margin: 0 5px 0 5px;
 }
 
-.Grid .next, .Grid .previous, .Grid th {
+.next, .previous {
   cursor: pointer;
 }
 
-.Grid .right {
+.right {
   text-align: right;
 }
 
-.Grid .center {
+.center {
   text-align: center;
 }
 
@@ -92,7 +56,6 @@ body {
   display: block;
   background-color: rgba(255,255,255,0.7);
 }
-
 
 .loading {
   position: absolute;

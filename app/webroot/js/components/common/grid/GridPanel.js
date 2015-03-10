@@ -30,8 +30,8 @@ var GridPanel = React.createClass({
         }, this);
     }
     return (
-           <table className="GridPanel table">
-               <GridHeader sort={this.props.sort} columnModel={this.props.columnModel} onChangeSort={this.props.onChangeSort}/>
+           <table className="table table-striped">
+               <GridHeader columnModel={this.props.columnModel} />
                <tbody>
                  {gridRows}
                </tbody>
