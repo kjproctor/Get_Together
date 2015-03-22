@@ -9,6 +9,7 @@ var GroupActions = require('../../actions/GroupActions');
 var LocalMap = require('../common/map/LocalMap');
 
 function getStoreState() {
+
     return {
         group: GroupStore.get(),
         loading: GroupStore.isLoading(),

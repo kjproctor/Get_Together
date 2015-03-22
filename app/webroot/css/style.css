@@ -11,6 +11,10 @@ body {
 	display: none;
 }
 
+ul {
+    list-style-type: none;
+}
+
 .expand {
 	display: block;
 }
