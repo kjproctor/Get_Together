@@ -27,7 +27,7 @@ var GridPaginator = React.createClass({
              numPages = Math.ceil(this.props.totalCount/this.props.resultsPerPage);
          }
          var paginatorBody;
-         if(numPages > 0)
+         if(numPages > 1)
          {
              var previous = "";
              var next = "";
