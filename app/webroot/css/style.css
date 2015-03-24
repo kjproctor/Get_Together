@@ -7,12 +7,12 @@
 body {
 }
 
-.collapse {
-	display: none;
-}
-
 ul {
     list-style-type: none;
+}
+
+.collapse {
+	display: none;
 }
 
 .expand {
@@ -52,6 +52,20 @@ ul {
 
 .center {
   text-align: center;
+}
+
+.menuContainer {
+   /* background-color: #f1f1f1;
+    padding: 5px;*/
+}
+
+.menuContainerSm {
+    background-color: #f1f1f1;
+    padding: 5px;
+}
+
+.navigation-menu-button {
+    background-color: #f1f1f1;
 }
 
 /* Absolute Center CSS Spinner */

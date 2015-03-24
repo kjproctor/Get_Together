@@ -28,16 +28,24 @@ var SingleCellRow = React.createClass({
         var items = [];
         for(var i=0; i<columns.length; i++)
         {
+            var uniqueKey;
+            if(row[columns[i]])
+            {
+                uniqueKey = row[columns[i]]+Math.random()*2+Math.random();
+            }
+            else
+            {
+                uniqueKey = "null_grid_column"+Math.random()*2+Math.random();
+            }
             if(columns[i].indexOf(".") > -1)
             {
                 var subObjectName = this.getSubObjectName(columns[i]);
                 var subObjectValue = this.getSubObjectValue(columns[i]);
-                items.push(<li><strong>{labels[i]}:</strong> {row[subObjectName][subObjectValue]}</li>);
-
+                items.push(<li key={uniqueKey}><strong>{labels[i]}:</strong> {row[subObjectName][subObjectValue]}</li>);
             }
             else
             {
-                items.push(<li><strong>{labels[i]}:</strong> {row[columns[i]]}</li>);
+                items.push(<li key={uniqueKey}><strong>{labels[i]}:</strong> {row[columns[i]]}</li>);
             }
         }
         return (

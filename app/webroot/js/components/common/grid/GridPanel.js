@@ -8,7 +8,7 @@ var GridRow = require('./GridRow');
 var SingleCellRow = require('./SingleCellRow');
 
 var GridPanel = React.createClass({
-  getDefaultProps: function ()
+  getDefaultProps: function()
   {
       return {
           sort: null,

@@ -15,7 +15,7 @@
   "author": "Kyle Proctor",
   "license": "MIT",
   "dependencies": {
-    "bootstrap": "^3.3.1",
+    "bootstrap": "^3.3.4",
     "flux": "^2.0.1",
     "jquery": "^2.1.1",
     "react": "0.12.x",
