@@ -9,7 +9,7 @@ function AbstractStore() {
     this._arg = {start: 0, limit: 10};
     this._totalCount = 0;
     this._page = 1;
-    this._loading = false;
+    this._loading = true;
     this._resource = "";
     this._resourceQueryMethod = "";
     this._url = "";
@@ -90,11 +90,10 @@ function AbstractStore() {
       console.log("Subclasses must implement how to handle their own actions.");
     };
 
-    this.refresh = function() {
-        this._loading = true;
-        this.emitChange();
+    this.refresh = function()
+    {
         REST.get(this._resource+this._resourceQueryMethod, this._arg, function(data) {
-            console.debug("data", data);
+            //console.debug("data", data);
             if(data.items)
             {
                 this._items = data.items;

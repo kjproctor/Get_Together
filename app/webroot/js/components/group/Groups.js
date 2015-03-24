@@ -38,12 +38,10 @@ var Groups = React.createClass({
 
     render: function ()
     {
-        var body;
         var groups = this.createDataModel(this.state.groups);
         return (
                 <div className="Groups">
                     <h1>Groups</h1>
-
                     <Grid  key="GroupsGrid"
                         columnModel={{"link": "Group", "day_of_week": "Day", "time": "Time", "age_range": "Ages", "location.description": "Location", "topic_name": "Topic"}}
                         results={groups}
@@ -54,7 +52,6 @@ var Groups = React.createClass({
                         sort={this.state.sort}
                         onChangePage={this.onChangePage}
                         onChangeSort={this.onChangeSort}
-                        loading={this.state.loading}
                         onRowClick={this.onRowClick} />
                 </div>
                 );

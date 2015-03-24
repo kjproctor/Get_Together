@@ -30,16 +30,15 @@ var Grid = React.createClass({
          }
      },
 
-     componentDidUpdate: function () 
+     componentDidMount: function ()
      {
         var nodes = $(this.getDOMNode()).find(".loading-container");
-
         if (nodes.length > 0) {
             var lc = $(nodes[0]);
             var tbody = $(lc.parent().children('.grid-body').find('tbody')[0]);
             lc.offset(tbody.offset());
             lc.width(tbody.width());
-            lc.height(tbody.height()); 
+            lc.height(tbody.height());
         }
      },
 
@@ -53,17 +52,17 @@ var Grid = React.createClass({
                          {loading}
                          <div className="grid-body clearfix">
                              <GridPanel data={results}
-                             columnModel={columnModel}
-                             sort={this.props.sort}
-                             onRowClick={this.props.onRowClick}
-                             onChangeSort={this.props.onChangeSort}/>
+                                columnModel={columnModel}
+                                sort={this.props.sort}
+                                onRowClick={this.props.onRowClick}
+                                onChangeSort={this.props.onChangeSort}/>
                          </div>
                          <div className="grid-footer clearfix">
-                                 <GridPaginator 
-                                 resultsPerPage={this.props.resultsPerPage} 
-                                 totalCount={this.props.totalCount} 
-                                 page={this.props.page} 
-                                 onChangePage={this.props.onChangePage}/>
+                             <GridPaginator
+                                resultsPerPage={this.props.resultsPerPage}
+                                totalCount={this.props.totalCount}
+                                page={this.props.page}
+                                onChangePage={this.props.onChangePage}/>
                          </div>
                  </div>
                  );
